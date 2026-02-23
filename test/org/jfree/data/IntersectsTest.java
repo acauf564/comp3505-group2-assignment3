@@ -48,6 +48,24 @@ class IntersectsTest {
         Range r = new Range(2.0, 8.0);
         assertFalse(r.intersects(9.0, 15.0));
     }
+    
+    @Test
+    void testIntersectsLowerBelowRangeUpperJustAboveLowerBound() {
+        Range r = new Range(2.0, 8.0);
+        assertTrue(r.intersects(-1.0, 2.0001));
+    }
+
+    @Test
+    void testIntersectsLowerInsideRangeUpperEqualsUpperBound() {
+        Range r = new Range(2.0, 8.0);
+        assertFalse(r.intersects(3.0, 8.0));
+    }
+    
+    @Test
+    void testIntersectsElseBranchUpperLessThanLowerReturnsFalse() {
+        Range r = new Range(2.0, 8.0);
+        assertFalse(r.intersects(5.0, 4.0));
+    }
 
     @AfterEach
     void tearDown() throws Exception {

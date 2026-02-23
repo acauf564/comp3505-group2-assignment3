@@ -48,6 +48,15 @@ class ShiftAllowZeroCrossingTest {
         assertEquals(0.0, shifted.getLowerBound(), 0.0000001);
         assertEquals(0.0, shifted.getUpperBound(), 0.0000001);
     }
+    
+    @Test
+    void testShiftAllowZeroCrossingFalseWhenLowerBoundIsZero() {
+        Range r = new Range(0.0, 5.0);
+        Range shifted = Range.shift(r, 2.0, false);
+
+        assertEquals(2.0, shifted.getLowerBound(), 0.0000001);
+        assertEquals(7.0, shifted.getUpperBound(), 0.0000001);
+    }
 
     @AfterEach
     void tearDown() throws Exception {
