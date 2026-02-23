@@ -344,6 +344,7 @@ public strictfp class Range implements Serializable {
         }
         if (!(this.upper == range.upper)) {
             return false;
+            //was initially returning true? once changed to return false, the test cases for Upper started passing.
         }
         return true;
     }
