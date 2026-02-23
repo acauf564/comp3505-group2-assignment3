@@ -31,8 +31,13 @@ class EqualsTest {
         Range r1 = new Range(1.0, 5.0);
         Range r2 = new Range(1.0, 6.0);
 
-        assertNotEquals(r1, r2);
-}
+        assertEquals(1.0, r1.getLowerBound());
+        assertEquals(1.0, r2.getLowerBound());
+        assertNotEquals(r1.getUpperBound(), r2.getUpperBound());
+
+        assertNotEquals(r1, r2); // same meaning as assertFalse(r1.equals(r2))
+    }
+
     @Test
     void testNullReturnsFalseForEquals() {
         Range r = new Range(1.0, 5.0);
