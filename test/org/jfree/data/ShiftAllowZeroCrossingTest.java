@@ -28,7 +28,7 @@ class ShiftAllowZeroCrossingTest {
         Range shifted = Range.shift(r, -8.0, false);
 
         assertEquals(0.0, shifted.getLowerBound(), 0.0000001);
-        assertEquals(0.0, shifted.getUpperBound(), 0.0000001);
+        assertEquals(2.0, shifted.getUpperBound(), 0.0000001);
     }
 
     @Test
@@ -45,7 +45,7 @@ class ShiftAllowZeroCrossingTest {
         Range r = new Range(-9.0, -4.0);
         Range shifted = Range.shift(r, 7.0, false);
 
-        assertEquals(0.0, shifted.getLowerBound(), 0.0000001);
+        assertEquals(-2.0, shifted.getLowerBound(), 0.0000001);
         assertEquals(0.0, shifted.getUpperBound(), 0.0000001);
     }
     
