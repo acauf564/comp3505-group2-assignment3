@@ -30,9 +30,9 @@ class EqualsTest {
     void testDifferentUpperReturnsFalseForEquals() {
         Range r1 = new Range(1.0, 5.0);
         Range r2 = new Range(1.0, 6.0);
-        assertFalse(r1.equals(r2));
-    }
 
+        assertNotEquals(r1, r2);
+}
     @Test
     void testNullReturnsFalseForEquals() {
         Range r = new Range(1.0, 5.0);
