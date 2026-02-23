@@ -2,8 +2,6 @@ package org.jfree.data;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.security.InvalidParameterException;
-
 import org.junit.jupiter.api.Test;
 
 class ExpandTest {
@@ -27,6 +25,13 @@ class ExpandTest {
         assertEquals(2.0, expanded.getLowerBound(), 0.0000001);
         assertEquals(6.0, expanded.getUpperBound(), 0.0000001);
     }
+
+ @Test
+void testExpandWithNullRangeThrowsIllegalArgumentExceptionForExpand() {
+    assertThrows(IllegalArgumentException.class, () -> {
+        Range.expand(null, 0.25, 0.5);
+    });
+}
 
     @Test
     void testExpandZeroLengthRangeRemainsSameForExpand() {
