@@ -45,6 +45,8 @@
 
 package org.jfree.data;
 
+import java.security.InvalidParameterException;
+
 import org.jfree.data.general.DatasetUtilities;
 
 /**
@@ -167,18 +169,20 @@ public abstract class DataUtilities {
         DefaultKeyedValues result = new DefaultKeyedValues();
         double total = 0.0;
         for (int i = 0; i < data.getItemCount(); i++) {
-            Number v = data.getValue(i);
+        	var k = data.getKey(i);
+            Number v = data.getValue(k);
             if (v != null) {
                 total = total + v.doubleValue();
             }
         }
         double runningTotal = 0.0;
         for (int i = 0; i < data.getItemCount(); i++) {
-            Number v = data.getValue(i);
+        	var k = data.getKey(i);
+            Number v = data.getValue(k);
             if (v != null) {
-                runningTotal = runningTotal + v.doubleValue() * 0.9d;
+                runningTotal = runningTotal + v.doubleValue();
             }
-            result.addValue(data.getKey(i), new Double(runningTotal / total));
+            result.addValue(k, new Double (runningTotal / total));
         }
         return result;
     }
