@@ -28,11 +28,12 @@ class ExpandTest {
         assertEquals(6.0, expanded.getUpperBound(), 0.0000001);
     }
 
-   @Test
-void testExpandWithNullRangeThrowsIllegalArgumentExceptionForExpand() {
-    assertThrows(IllegalArgumentException.class, () -> Range.expand(null, 0.25, 0.5));
-}
-}
+    @Test
+    void testExpandWithNullRangeThrowsInvalidParameterExceptionForExpand() {
+        assertThrows(InvalidParameterException.class, () -> {
+            Range.expand(null, 0.25, 0.5);
+        });
+    }
 
     @Test
     void testExpandZeroLengthRangeRemainsSameForExpand() {
