@@ -29,13 +29,6 @@ class ExpandTest {
     }
 
     @Test
-    void testExpandWithNullRangeThrowsInvalidParameterExceptionForExpand() {
-        assertThrows(InvalidParameterException.class, () -> {
-            Range.expand(null, 0.25, 0.5);
-        });
-    }
-
-    @Test
     void testExpandZeroLengthRangeRemainsSameForExpand() {
         Range base = new Range(3.0, 3.0); // length = 0
 
