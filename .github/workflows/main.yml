@@ -27,7 +27,7 @@ jobs:
     - name: Compile Java files
       run: |
         javac -d bin/ src/org/jfree/data/Range.java
-        javac -d bin/ src/org/jfree/data/DataUtilitites.java
+        javac -d bin/ src/org/jfree/data/DataUtilities.java
         javac -d bin -cp bin:lib/* $(find test/ -name "*.java")
 
     - name: Run JUnit 5 tests
