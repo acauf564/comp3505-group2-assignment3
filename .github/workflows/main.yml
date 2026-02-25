@@ -18,8 +18,6 @@ jobs:
       run: |
         mkdir lib
         mkdir bin
-
-        
         curl https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar -o lib/javax.servlet-api-3.0.1.jar
         curl https://repo1.maven.org/maven2/org/jfree/jcommon/1.0.17/jcommon-1.0.17.jar -o lib/jcommon-1.0.17.jar
 
@@ -28,7 +26,8 @@ jobs:
         curl https://repo1.maven.org/maven2/org/mockito/mockito-all/2.0.2-beta/mockito-all-2.0.2-beta.jar -o lib/mockito-all-2.0.2-beta.jar 
     - name: Compile Java files
       run: |
-        javac -d bin/ $(find src/ -name "*.java") 
+        javac -d bin/ src/org/jfree/data/Range.java
+        javac -d bin/ src/org/jfree/data/DataUtilitites.java
         javac -d bin -cp bin:lib/* $(find test/ -name "*.java")
 
     - name: Run JUnit 5 tests
