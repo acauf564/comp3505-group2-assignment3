@@ -27,6 +27,7 @@ jobs:
           mkdir -p lib
           curl -L -o lib/javax.servlet-api-3.0.1.jar https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar
           curl -L -o lib/jcommon-1.0.17.jar https://repo1.maven.org/maven2/org/jfree/jcommon/1.0.17/jcommon-1.0.17.jar
+          curl -L -o lib/jcommon-1.0.17.jar https://repo1.maven.org/maven2/org/mockito/mockito-all/2.0.2-beta/mockito-all-2.0.2-beta.jar
 
           # JUnit 5 (includes engine + console launcher)
           curl -L -o lib/junit-platform-console-standalone-1.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar
