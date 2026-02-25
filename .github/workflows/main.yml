@@ -13,36 +13,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v2
+    - name: Download required jars
+      run: |
+        mkdir -p lib
+        curl -L -o lib/javax.servlet-api-3.0.1.jar https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar
+        curl -L -o lib/jcommon-1.0.17.jar https://repo1.maven.org/maven2/org/jfree/jcommon/1.0.17/jcommon-1.0.17.jar
+        curl -L -o lib/mockito-all-2.0.2-beta.jar https://repo1.maven.org/maven2/org/mockito/mockito-all/2.0.2-beta/mockito-all-2.0.2-beta.jar
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '11'
+        # JUnit 5 (includes engine + console launcher)
+        curl -L -o lib/junit-platform-console-standalone-1.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar
 
-      - name: Download required jars
-        run: |
-          mkdir -p lib
-          curl -L -o lib/javax.servlet-api-3.0.1.jar https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar
-          curl -L -o lib/jcommon-1.0.17.jar https://repo1.maven.org/maven2/org/jfree/jcommon/1.0.17/jcommon-1.0.17.jar
-          curl -L -o lib/jcommon-1.0.17.jar https://repo1.maven.org/maven2/org/mockito/mockito-all/2.0.2-beta/mockito-all-2.0.2-beta.jar
-
-          # JUnit 5 (includes engine + console launcher)
-          curl -L -o lib/junit-platform-console-standalone-1.10.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar
-
-      - name: Compile Java files
-        run: |
+    - name: Compile Java files
+      run: |
           mkdir -p bin
-          find src -name "*.java" > src_files.txt
-          find test -name "*.java" > test_files.txt
-          javac -cp "lib/*" -d bin @src_files.txt @test_files.txt
+          javac -d bin/ $(find src/ -name "*.java")
+          javac -d bin -cp bin:lib/junit-platform-console-standalone-1.10.2.jar $(find test/ -name "*.java")
 
-      - name: Run JUnit 5 tests
-        run: |
-          java -jar lib/junit-platform-console-standalone-1.10.2.jar \
-          --class-path "bin:lib/*" \
-          --select-package org.jfree.data \
-          --include-classname ".*Test" \
-          --details=tree
+    - name: Run JUnit 5 tests
+      run: |
+        java -jar lib/junit-platform-console-standalone-1.10.2.jar \
+        --class-path "bin:lib/*" \
+        --select-package org.jfree.data \
+        --include-classname ".*Test" \
+        --details=tree
