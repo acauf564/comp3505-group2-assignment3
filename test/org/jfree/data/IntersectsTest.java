@@ -58,7 +58,7 @@ class IntersectsTest {
     @Test
     void testIntersectsLowerInsideRangeUpperEqualsUpperBound() {
         Range r = new Range(2.0, 8.0);
-        assertFalse(r.intersects(3.0, 8.0));
+        assertTrue(r.intersects(3.0, 8.0));
     }
     
     @Test
