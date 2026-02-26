@@ -1,0 +1,84 @@
+package org.jfree.data;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class DataUtilitiesTest {
+
+    @Test
+    public void testCreateNumberArrayNullThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            DataUtilities.createNumberArray(null);
+        });
+    }
+    
+    @Test
+    public void testCreateNumberArrayValidInput() {
+        double[] data = {1.5, 0.0, -2.0};
+        Number[] result = DataUtilities.createNumberArray(data);
+
+        assertNotNull(result);
+        assertEquals(3, result.length);
+        assertEquals(1.5, result[0].doubleValue(), 0.0000001);
+        assertEquals(0.0, result[1].doubleValue(), 0.0000001);
+        assertEquals(-2.0, result[2].doubleValue(), 0.0000001);
+    }
+    
+    @Test
+    public void testCreateNumberArray2DNullThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            DataUtilities.createNumberArray2D(null);
+        });
+    }
+
+    @Test
+    public void testCreateNumberArray2DValidInput() {
+        double[][] data = {
+            {1.0, 2.0},
+            {-3.5, 0.0, 4.2}
+        };
+
+        Number[][] result = DataUtilities.createNumberArray2D(data);
+
+        assertNotNull(result);
+        assertEquals(2, result.length);
+
+        // row 0
+        assertEquals(2, result[0].length);
+        assertEquals(1.0, result[0][0].doubleValue(), 0.0000001);
+        assertEquals(2.0, result[0][1].doubleValue(), 0.0000001);
+
+        // row 1
+        assertEquals(3, result[1].length);
+        assertEquals(-3.5, result[1][0].doubleValue(), 0.0000001);
+        assertEquals(0.0, result[1][1].doubleValue(), 0.0000001);
+        assertEquals(4.2, result[1][2].doubleValue(), 0.0000001);
+    }
+    
+    @Test
+    public void testCreateNumberArray2DContainsNullRowThrowsException() {
+        double[][] data = new double[2][];
+        data[0] = new double[] {1.0, 2.0};
+        data[1] = null;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            DataUtilities.createNumberArray2D(data);
+        });
+    }
+    
+    @Test
+    public void testCreateNumberArrayEmptyInput() {
+        double[] data = {};
+        Number[] result = DataUtilities.createNumberArray(data);
+        assertNotNull(result);
+        assertEquals(0, result.length);
+    }
+
+    @Test
+    public void testCreateNumberArray2DEmptyInput() {
+        double[][] data = {};
+        Number[][] result = DataUtilities.createNumberArray2D(data);
+        assertNotNull(result);
+        assertEquals(0, result.length);
+    }
+}
