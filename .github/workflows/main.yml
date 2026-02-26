@@ -33,5 +33,5 @@ jobs:
 
     - name: Run JUnit 5 tests
       run: |
-        java -jar lib/junit-platform-console-standalone-1.11.4.jar execute -cp bin:lib/mockito-all-2.0.2-beta.jar -c org.jfree.data.AllTests
+        java --add-opens java.base/java.lang=ALL-UNNAMED -jar lib/junit-platform-console-standalone-1.11.4.jar execute -cp bin:lib/mockito-all-2.0.2-beta.jar -c org.jfree.data.AllTests
         --select-class org.jfree.data.AllTests
