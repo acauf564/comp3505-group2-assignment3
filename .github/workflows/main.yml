@@ -20,16 +20,17 @@ jobs:
         mkdir bin
         curl https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar -o lib/javax.servlet-api-4.0.1.jar
         curl https://repo1.maven.org/maven2/org/jfree/jcommon/1.0.24/jcommon-1.0.24.jar -o lib/jcommon-1.0.24.jar
-        curl https://repo1.maven.org/maven2/org/jfree/jfreechart/1.5.4/jfreechart-1.5.4.jar -o lib/jfreechart-1.5.4.jar
-        curl https://repo1.maven.org/maven2/org/mockito/mockito-all/2.0.2-beta/mockito-all-2.0.2-beta.jar -o lib/mockito-all-2.0.2-beta.jar 
+        curl https://repo1.maven.org/maven2/org/jfree/jfreechart/1.5.4/jfreechart-1.5.4.jar -o lib/jfreechart-1.5.4.jar 
 
         # JUnit 5 (includes engine + console launcher)
         curl https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.11.4/junit-platform-console-standalone-1.11.4.jar -o lib/junit-platform-console-standalone-1.11.4.jar 
     
     - name: Compile Java files
       run: |
-        javac -d bin/ -cp lib/jcommon-1.0.24.jar:lib/javax.servlet-api-4.0.1.jar $(find src/ -name "*.java")
-        javac -d bin/ -cp bin:lib/mockito-all-2.0.2-beta.jar:lib/junit-platform-console-standalone-1.11.4.jar: $(find test/ -name "*.java")
+        javac -d bin/ -cp "lib/*" $(find src/ -name "*.java")
+        curl https://repo1.maven.org/maven2/org/mockito/mockito-all/2.0.2-beta/mockito-all-2.0.2-beta.jar -o lib/mockito-all-2.0.2-beta.jar 
+        javac -d bin -cp bin:lib/* $(find test/ -name "*.java")
+
 
     - name: Run JUnit 5 tests
       run: |
