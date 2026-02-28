@@ -164,7 +164,7 @@ public abstract class DataUtilities {
      */
     public static KeyedValues getCumulativePercentages(KeyedValues data) {
         if (data == null) {
-            throw new IllegalArgumentException("Null 'data' argument.");   
+            throw new InvalidParameterException("Null 'data' argument.");   
         }
         DefaultKeyedValues result = new DefaultKeyedValues();
         double total = 0.0;
