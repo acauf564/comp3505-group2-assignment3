@@ -122,6 +122,19 @@ public class DataUtilitiesTest {
     
     }
 
+    //Test special double values. This checks whether Double.NaN, Double.POSITIVE_INFINITY, and Double.NEGATIVE_INFINITY are preserved correctly.
+
+    @Test
+    public void testCreateNumberArraySpecialDoubleValues() {
+        double[] data = {Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY};
+        Number[] result = DataUtilities.createNumberArray(data);
+
+        assertEquals(3, result.length);
+        assertTrue(Double.isNaN(result[0].doubleValue()));
+        assertEquals(Double.POSITIVE_INFINITY, result[1].doubleValue());
+        assertEquals(Double.NEGATIVE_INFINITY, result[2].doubleValue());
+    }
+
     
     @Test
     public void testGetCumulativePercentagesHandlesNullValue() {
