@@ -6,7 +6,7 @@ import org.junit.platform.suite.api.Suite;
 @Suite
 @SelectClasses({ CombineTest.class, ConstrainTest.class, ContainsTest.class, EqualsTest.class, ExpandTest.class,
 		ExpandToIncludeTest.class, GetCentralValueTest.class, GetLengthTest.class, GetLowerBoundTest.class,
-		GetUpperBoundTest.class, IntersectsTest.class, RangeConstructorTest.class, ShiftAllowZeroCrossingTest.class,
+		GetUpperBoundTest.class, HashcodeTest.class, IntersectsTest.class, RangeConstructorTest.class, ShiftAllowZeroCrossingTest.class,
 		ShiftTest.class, ToStringTest.class })
 public class RangeTests {
 
