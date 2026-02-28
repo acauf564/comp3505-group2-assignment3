@@ -152,4 +152,10 @@ public class DataUtilitiesTest {
         assertEquals(0.25, result.getValue("B").doubleValue(), 0.0000001);
         assertEquals(1.0, result.getValue("C").doubleValue(), 0.0000001);
     }
+
+   @Test
+    public void testDataUtilitiesConstructor() {
+        DataUtilities instance = new DataUtilities() { };
+        assertNotNull(instance);
+    }
 }
