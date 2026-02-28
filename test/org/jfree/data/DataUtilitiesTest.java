@@ -84,4 +84,42 @@ public class DataUtilitiesTest {
         assertNotNull(result);
         assertEquals(0, result.length);
     }
+
+
+    //Test 2D array with empty inner row
+    @Test
+    public void testCreateNumberArray2DWithEmptyInnerRow() {
+        double[][] data = {
+        {1.0, 2.0},
+        {},
+        {3.5}
+        };
+
+        Number[][] result = DataUtilities.createNumberArray2D(data);
+
+        assertEquals(3, result.length);
+        assertEquals(2, result[0].length);
+        assertEquals(0, result[1].length);
+        assertEquals(1, result[2].length);
+        assertEquals(3.5, result[2][0].doubleValue(), 0.0000001);
+    }
+
+
+    //Test special values in 2D input
+    @Test
+    public void testCreateNumberArray2DSpecialDoubleValues() {
+        
+        double[][] data = {
+        {Double.NaN},
+        {Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY}
+    };
+
+    Number[][] result = DataUtilities.createNumberArray2D(data);
+
+    assertTrue(Double.isNaN(result[0][0].doubleValue()));
+    assertEquals(Double.POSITIVE_INFINITY, result[1][0].doubleValue());
+    assertEquals(Double.NEGATIVE_INFINITY, result[1][1].doubleValue());
+    
+    }
+
 }
