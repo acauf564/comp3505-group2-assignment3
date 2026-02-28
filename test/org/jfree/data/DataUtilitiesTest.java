@@ -136,7 +136,7 @@ public class DataUtilitiesTest {
     }
 
     
-    @Test
+   @Test
     public void testGetCumulativePercentagesHandlesNullValue() {
         DefaultKeyedValues data = new DefaultKeyedValues();
         data.addValue("A", 1.0);
@@ -147,5 +147,9 @@ public class DataUtilitiesTest {
 
         assertNotNull(result);
         assertEquals(3, result.getItemCount());
+
+        assertEquals(0.25, result.getValue("A").doubleValue(), 0.0000001);
+        assertEquals(0.25, result.getValue("B").doubleValue(), 0.0000001);
+        assertEquals(1.0, result.getValue("C").doubleValue(), 0.0000001);
     }
 }
