@@ -84,4 +84,17 @@ public class DataUtilitiesTest {
         assertNotNull(result);
         assertEquals(0, result.length);
     }
+    
+    @Test
+    public void testGetCumulativePercentagesHandlesNullValue() {
+        DefaultKeyedValues data = new DefaultKeyedValues();
+        data.addValue("A", 1.0);
+        data.addValue("B", null);
+        data.addValue("C", 3.0);
+
+        KeyedValues result = DataUtilities.getCumulativePercentages(data);
+
+        assertNotNull(result);
+        assertEquals(3, result.getItemCount());
+    }
 }
