@@ -40,7 +40,7 @@
  *               from the DatasetUtilities class (DG);
  * 17-May-2005 : Added calculateColumnTotal() and calculateRowTotal() 
  *               methods (DG);
- * 
+ * test
  */
 
 package org.jfree.data;
