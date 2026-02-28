@@ -29,6 +29,13 @@ class GetCumulativePercentagesTest {
 	}
 	
 	@Test
+	void testNullParameter() {
+		assertThrows(InvalidParameterException.class, ()-> {
+			DataUtilities.getCumulativePercentages(null);
+		});
+	}
+	
+	@Test
 	void testOnlyPositiveValues() {
 		KeyedValues result = DataUtilities.getCumulativePercentages(values);
 		assertEquals(0.125,result.getValue(0.0));
