@@ -1,13 +1,16 @@
 package org.jfree.data;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.security.InvalidParameterException;
+
 import org.junit.jupiter.api.Test;
 
 public class DataUtilitiesTest {
 
     @Test
     public void testCreateNumberArrayNullThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(InvalidParameterException.class, () -> {
             DataUtilities.createNumberArray(null);
         });
     }
@@ -26,7 +29,7 @@ public class DataUtilitiesTest {
     
     @Test
     public void testCreateNumberArray2DNullThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(InvalidParameterException.class, () -> {
             DataUtilities.createNumberArray2D(null);
         });
     }
@@ -61,7 +64,7 @@ public class DataUtilitiesTest {
         data[0] = new double[] {1.0, 2.0};
         data[1] = null;
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(InvalidParameterException.class, () -> {
             DataUtilities.createNumberArray2D(data);
         });
     }
