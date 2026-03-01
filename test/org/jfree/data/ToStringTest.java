@@ -18,40 +18,16 @@ class ToStringTest {
     }
 
     @Test
-    void testToStringBasicFormat() {
+    void testToStringRespectsFormatting() {
         Range r = new Range(-4.2, 17.6);
-        String s = r.toString();
-
-        assertTrue(s.startsWith("Range["), "Should start with Range[");
-        assertTrue(s.endsWith("]"), "Should end with ]");
-        assertTrue(s.contains(","), "Should contain a comma between bounds");
-    }
-
-    @Test
-    void testToStringContainsLowerBound() {
-        Range r = new Range(-4.2, 17.6);
-        String s = r.toString();
-
-        System.out.println("toString() output: " + s);
-        assertTrue(s.contains("-4.2"), "Should include the lower bound value");
-    }
-
-    @Test
-    void testToStringContainsUpperBound() {
-        Range r = new Range(-4.2, 17.6);
-        String s = r.toString();
-
-        assertTrue(s.contains("17.6"), "Should include the upper bound value");
+        assertEquals("Range[-4.2,17.6]", r.toString());
     }
 
     @Test
     void testToStringZeroLengthRange() {
         Range r = new Range(6.66, 6.66);
-        String s = r.toString();
-
-        assertTrue(s.contains("6.66"), "Should include the bound value for zero-length range");
-        assertTrue(s.startsWith("Range[") && s.endsWith("]"), "Should follow Range[lower,upper] format");
-    }
+        assertEquals("Range[6.66,6.66]", r.toString());
+    } 
 
     @AfterEach
     void tearDown() throws Exception {
