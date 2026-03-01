@@ -29,14 +29,14 @@ class GetCumulativePercentagesTest {
 	}
 	
 	@Test
-	void testNullParameter() {
+	void testGetCumulativePercentagesWithNullDataThrowsInvalidParameter() {
 		assertThrows(InvalidParameterException.class, ()-> {
 			DataUtilities.getCumulativePercentages(null);
 		});
 	}
 	
 	@Test
-	void testOnlyPositiveValues() {
+	void testGetCumulativePercentagesWithOnlyPositiveValues() {
 		KeyedValues result = DataUtilities.getCumulativePercentages(values);
 		assertEquals(0.125,result.getValue(0.0));
 		assertEquals(0.5,result.getValue(5.0));
@@ -44,7 +44,7 @@ class GetCumulativePercentagesTest {
 	}
 	
 	@Test
-	void testWithNegativeValue() {
+	void testGetCumulativePercentagesWithNegativeFirstValue() {
 		values = mock(KeyedValues.class);
 		when(values.getKey(0)).thenReturn(0.0);
 		when(values.getKey(1)).thenReturn(5.0);
